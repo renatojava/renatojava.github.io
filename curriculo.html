@@ -1,181 +1,1245 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renato Garcia - Curriculum Vitae</title>
+    <title>Renato Garcia - Software Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --secondary: #7C3AED;
+            --radius: 12px;
+            --transition: 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg: #F8FAFC;
+            --bg-paper: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --divider: rgba(0,0,0,0.07);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            --chip-bg: #EEF2FF;
+            --chip-text: #4F46E5;
+            --hero-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #4F46E5 100%);
+            --nav-bg: rgba(255,255,255,0.85);
+            --accent: #4F46E5;
+            --highlight-bg: #F5F3FF;
+            --cert-icon-bg: #EEF2FF;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0B1120;
+            --bg-paper: #131C2E;
+            --text-primary: #E2E8F0;
+            --text-secondary: #7C8FA6;
+            --divider: rgba(255,255,255,0.06);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+            --chip-bg: rgba(79,70,229,0.15);
+            --chip-text: #818CF8;
+            --hero-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+            --nav-bg: rgba(11,17,32,0.85);
+            --accent: #818CF8;
+            --highlight-bg: rgba(79,70,229,0.08);
+            --cert-icon-bg: rgba(79,70,229,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color var(--transition), color var(--transition);
         }
 
-        h1, h2, h3 {
-            color: #333;
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--divider);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        header {
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: 1px solid var(--divider);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .btn-icon:hover {
+            background: var(--highlight-bg);
+            border-color: var(--accent);
+        }
+
+        .btn-resume {
+            background: none;
+            border: 1px solid var(--divider);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all var(--transition);
+        }
+
+        .btn-resume:hover {
+            background: var(--highlight-bg);
+            border-color: var(--accent);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--hero-gradient);
+            padding: 100px 24px 60px;
             text-align: center;
-            background-color: #555;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(124,58,237,0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(79,70,229,0.2) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.2);
+            margin-bottom: 24px;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
             color: #fff;
-            padding: 20px;
-            border-radius: 5px 5px 0 0;
+            letter-spacing: -1.5px;
+            margin-bottom: 8px;
         }
 
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 4px;
+        }
+
+        .hero .subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 8px;
+        }
+
+        .hero .tagline {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .hero-chip {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+        .hero-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-metric {
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-metric h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .hero-metric span {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .hero-metric-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.2);
+            align-self: stretch;
+        }
+
+        /* ── Section ── */
         .section {
-            margin-bottom: 30px;
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .summary p {
-            margin-top: 0;
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
         }
 
-        .experience article, .education article {
+        /* ── About ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
             margin-bottom: 20px;
         }
 
-        .certifications ul {
-            padding: 0;
+        .about-highlight {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .about-highlight::before {
+            content: '';
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 8px;
+        }
+
+        .about-highlight p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             margin: 0;
-            list-style-type: none;
         }
 
-        .certifications ul li {
-            margin-bottom: 5px;
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
+        .stat-card {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition);
+        }
+
+        .stat-card:hover { transform: translateY(-2px); }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .stat-card span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ── Experience ── */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .exp-card {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .exp-card:hover { transform: translateY(-2px); }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-role {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .exp-company {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-period {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .exp-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        .exp-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .exp-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip {
+            background: var(--chip-bg);
+            color: var(--chip-text);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ── Tech Stack ── */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tech-category {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .tech-category h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .tech-category .tech-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .tech-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* ── Certifications ── */
+        .cert-highlighted {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .cert-card-big {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform var(--transition);
+        }
+
+        .cert-card-big:hover { transform: translateY(-2px); }
+
+        .cert-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--cert-icon-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .cert-info .cert-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .cert-section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .cert-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .cert-item {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cert-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cert-item-left span.cert-emoji {
+            font-size: 1.1rem;
+        }
+
+        .cert-item-left p {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .cert-item .cert-year {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ── Education ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .edu-card {
+            background: var(--bg-paper);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .edu-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .edu-card .edu-school {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .edu-card .edu-period {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ── Contact ── */
+        .contact-section {
+            background: var(--hero-gradient);
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.2) 0%, transparent 60%);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .contact-content p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all var(--transition);
+        }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            background: var(--bg);
+        }
+
+        /* ── Scroll to top ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── Print ── */
         @media print {
-            body {
-                color: #fff;
-                background-color: #fff;
-                margin: 0;
-                padding: 0;
-                size: A4;
+            .navbar, .scroll-indicator, .hero-buttons, .btn-icon, .contact-section { display: none; }
+
+            body { background: #fff; color: #000; }
+
+            .hero {
+                min-height: auto;
+                padding: 40px 20px;
+                background: #4F46E5 !important;
             }
 
-            .container {
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
+            .section { padding: 30px 20px; }
+
+            .exp-card, .stat-card, .tech-category, .cert-card-big, .cert-item, .edu-card {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                break-inside: avoid;
             }
 
-            header {
-                background-color: #555;
-            }
+            @page { size: A4; margin: 12mm; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .tech-grid { grid-template-columns: 1fr; }
+            .cert-highlighted { grid-template-columns: 1fr; }
+            .cert-list { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .hero-metrics { gap: 24px; }
+            .hero-metric-divider { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        
-        <header>
-            <h1>Renato Garcia</h1>
-            <p>Full stack developer, Software Architect</p>
-            <p>43 996399184, renato.java@gmail.com</p>
-        </header>
 
-        <section class="summary section">
-            <h2>Summary</h2>
-            <p>
-With over 15 years of experience in software development and architecture, I am Software Architecture and developer, Building state-of-the-art integration systems for e-commerce platforms and marketplaces. I have a solid experience in Java and Kotlin technologies, as well as various certifications in Java, Oracle SOA Suite, ITIL and PSM.
-My expertise lies in web development, microservices architecture, and cloud platforms, especially AWS and Kubernetes. I apply best practices such as Domain-Driven Design, Hexagonal Architecture, and Test-Driven Development to deliver innovative and efficient solutions that enhance usability, optimization, and conversion. I also lead and empower my teams, fostering a culture of quality, agility, and creativity. My mission is to create value for my clients and users by solving complex problems with elegant and efficient software.
-                  </section>
-
-        <section class="experience section">
-            <h2>Experience</h2>
-             <article>
-                <h3>Tech Lead | Serasa Experian - Biometrics Product (January 2025 - Present)</h3>
-                <p>
-                Technical leadership of the biometrics platform development team, defining architectures and ensuring the quality of deliverables using Java, AWS, and Oracle Autonomous Database.
-                    •Responsible for leading technical alignment and requirements refinement meetings with stakeholders, translating business needs into viable technical solutions.
-                    •Contributed to the development of microservices and integrations with messaging systems (AWS SQS/SNS) for biometric data processing.
-                    •Technologies: Java, Spring Boot, AWS (SQS, SNS), Oracle Autonomous Database, Microservices, APIs.
-                </p>
-            </article>
-            <article>
-                <h3>Software Architecture - GuBee (July 2019 - 2025)</h3>
-                <p>
-                    As the Software Architect at GuBee since July 2019, my role involves leading the development of an integration hub system connecting e-commerce platforms and marketplaces. We employ a microservices architecture, using Java 21 and Kotlin as our primary languages, alongside Spring Boot and Quarkus. Our tech stack includes Apache Kafka for event-driven messaging, Redis, and MongoDB for data management. We're currently transitioning to Quarkus for a native framework and deployment setup. Our infrastructure is on AWS, utilizing Kubernetes and AWS Lambda. I also mentor a young team, manage backlogs, and drive product activities.
-                </p>
-            </article>
-            <article>
-                <h3>System Architect - Atos (December 2014 - July 2019)</h3>
-                <p>
-                    I've led projects for big names like NET, Multiplus Fidelidade, and Carrefour. My job involves defining systems, making proposals, leading teams, and promoting our solutions. I specialize in Oracle SOA Suite, ensuring smooth integration. Notably, I shaped Carrefour's HeavyGoods product to be more user-friendly and increase sales with event-based microservices.
-                </p>
-            </article>
-            <article>
-                <h3>Consultant - Infracommerce (November 2013 - November 2014)</h3>
-                <p>    
-                As project leader and software architect, I oversaw development for the ACEC e-commerce platform, catering to clients like Carrefour Group, Decathlon, and Lança Perfume. The platform, built on a service-oriented architecture, comprised administrative, sales, and integration layers. Administrative tasks, such as deal management and customer registration, were managed using ADF. Sales optimization utilized Rests, JSF, and Solr, with dynamic rule generation powered by Drools. Integration with customers' ERPs was facilitated through BPEL and OSB services.
-                </p>
-            </article>
-            <article>
-                <h3>Tech Lead - Accurate (August 2010 - November 2014)</h3>
-                <p>Team leader on a project to CPQD in a system came to city hall. Responsibilities included understanding customer requirements, performing estimates of these requirements (using function points), defining architecture development and assisting the team in the course of activities.</p>
-            </article>
-            <article>
-                <h3>System Architect - Atos (June 2013 - November 2013)</h3>
-                <p>Systems architecture, acting within the SERASA client. Activities include architecture definition, specification and others.</p>
-            </article>
-            <article>
-                <h3>Tech Lead - LINT (June 2009 - November 2010)</h3>
-                <p>
-                    As team leader for CPQD project, I led the development of a city hall system. Responsibilities included understanding customer needs, estimating using function points, defining architecture, and supporting the team through all project phases.
-                </p>
-            </article>
-            <article>
-                <h3>Systems Analyst - Amadeus IT Group (2008)</h3>
-                <p>
-                    Improved my proficiency in requirements definition, architecture design, and development while collaborating on insurance projects. Contributed to a tourism development project for Carrefour, employing technology frameworks such as Struts 2.0, EJB3, JPA, Spring, Maven, and WebService, alongside other features.
-                </p>
-            </article>
-            <article>
-                <h3>Team Leader and Quality Assurance - BSI Tecnologia (2003 - 2008)</h3>
-                <p> 
-
-                    Began as a developer at BSI, advancing to team leader and quality control roles. Managed projects for financial institutions like Itaú and Bradesco, utilizing JAVA, EJB2, Struts, Hibernate, and integrating with Cobol legacy systems.
-                </p>
-            </article>
-        </section>
-
-        <section class="education section">
-            <h2>Education</h2>
-            <article>
-                <h3>Postgraduate, Computer Software Engineering - Unifil (2014 - 2015)</h3>
-            </article>
-            <article>
-                <h3>Bachelor of Science in Information Systems - Universidade Tecnológica Federal do Paraná (2003 - 2007)</h3>
-            </article>
-        </section>
-
-        <section class="certifications section">
-            <h2>Certifications</h2>
-            <ul>
-                <li>PSM I - May 2018</li>
-                <li>Oracle SOA Suite 11g Essentials - Jun 2015</li>
-                <li>Oracle Certified Professional, Java SE 7 Programmer - Aug 2014</li>
-                <li>ITIL® Foundation Certificate Jun 2013</li>
-                <li>Sun Certified Enterprise Architect for the Java Platform Oct 2010</li>
-                <li>Sun Certified Associate for Java Platform - Oct 2008</li>
-                <li>Sun Certified Business Component Developer for the Java Platform, EE 5 - Nov 2007</li>
-                <li>Sun Certified Business Component Developer for the Java Platform, EE 1.3 - Feb 2007</li>
-                <li>Sun Certified Web Component Developer for the Java Platform - Oct 2006</li>
-                <li>Sun Certified Programmer for the Java Platform - Jun 2006</li>
-            </ul>
-        </section>
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="#" class="navbar-brand">RG</a>
+    <div class="navbar-actions">
+        <button class="btn-icon" onclick="toggleTheme()" id="themeToggle" title="Toggle theme">&#9788;</button>
+        <button class="btn-resume" onclick="window.print()" title="Download Resume">&#128196; Resume</button>
     </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <h1>Renato Garcia</h1>
+        <h2>Software Architect &amp; Tech Lead</h2>
+        <p class="subtitle">Microservices &middot; Event-Driven Architecture &middot; Cloud &middot; Java/Kotlin</p>
+        <p class="tagline">20+ years building scalable integration systems for e-commerce platforms and marketplaces.</p>
+
+        <div class="hero-chips">
+            <span class="hero-chip">Java</span>
+            <span class="hero-chip">Kotlin</span>
+            <span class="hero-chip">Quarkus</span>
+            <span class="hero-chip">Spring Boot</span>
+            <span class="hero-chip">Kafka</span>
+            <span class="hero-chip">Kubernetes</span>
+            <span class="hero-chip">AWS</span>
+            <span class="hero-chip">DDD</span>
+        </div>
+
+        <div class="hero-buttons">
+            <a href="#experience" class="btn-primary">View Experience</a>
+            <button class="btn-outline" onclick="window.print()">&#128196; Download Resume</button>
+        </div>
+
+        <div class="hero-metrics">
+            <div class="hero-metric">
+                <h3>20+</h3>
+                <span>Years of Experience</span>
+            </div>
+            <div class="hero-metric-divider"></div>
+            <div class="hero-metric">
+                <h3>9+</h3>
+                <span>Companies</span>
+            </div>
+            <div class="hero-metric-divider"></div>
+            <div class="hero-metric">
+                <h3>10</h3>
+                <span>Certifications</span>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">&#8964;</div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+        <div class="about-text">
+            <p>
+                Software Architect with 20+ years building production systems at scale. Specialized in integration systems for e-commerce, leveraging expertise in microservices and event-driven architecture. Currently focused on pioneering integration solutions at GuBee, delivering a robust hub connecting platforms and marketplaces.
+            </p>
+            <div class="about-highlight">
+                <p>Led the design and development of an integration hub connecting e-commerce platforms and marketplaces using microservices, Apache Kafka and TDD</p>
+            </div>
+            <div class="about-highlight">
+                <p>Deep expertise in Java, Kotlin, Quarkus, Spring Boot, with infrastructure on AWS and Kubernetes</p>
+            </div>
+            <div class="about-highlight">
+                <p>Experience spanning system architecture, team leadership, and technical consulting across e-commerce, telecom, and enterprise sectors</p>
+            </div>
+        </div>
+        <div class="about-stats">
+            <div class="stat-card">
+                <h3>20+</h3>
+                <span>Years of Experience</span>
+            </div>
+            <div class="stat-card">
+                <h3>9+</h3>
+                <span>Companies &amp; Clients</span>
+            </div>
+            <div class="stat-card">
+                <h3>10</h3>
+                <span>Certifications</span>
+            </div>
+            <div class="stat-card">
+                <h3>5+</h3>
+                <span>Industries</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-list">
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Software Architecture</div>
+                    <div class="exp-company">GuBee &middot; Full-time &middot; Londrina, PR</div>
+                </div>
+                <div class="exp-period">Jul 2019 &ndash; Present</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Led the design and development of an integration hub system for e-commerce platforms and marketplaces using microservices architecture and Test-Driven Development</li>
+                <li>Implemented Apache Kafka for event-driven messaging and Redis/MongoDB for data management in the technology stack</li>
+                <li>Currently transitioning to Quarkus with a native framework and deployment setup on AWS with Kubernetes</li>
+                <li>Mentored a team of developers, managed backlogs, and drove product activities</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java 21</span>
+                <span class="chip">Kotlin</span>
+                <span class="chip">Quarkus</span>
+                <span class="chip">Spring Boot</span>
+                <span class="chip">Apache Kafka</span>
+                <span class="chip">Redis</span>
+                <span class="chip">MongoDB</span>
+                <span class="chip">AWS</span>
+                <span class="chip">Kubernetes</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Tech Lead</div>
+                    <div class="exp-company">Serasa Experian &middot; Full-time &middot; Remote</div>
+                </div>
+                <div class="exp-period">Jan 2025 &ndash; May 2025</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Technical leadership of the biometrics platform development team, defining architectures and ensuring the quality of deliverables</li>
+                <li>Led technical alignment and requirements refinement meetings with stakeholders, translating business needs into viable technical solutions</li>
+                <li>Contributed to the development of microservices and integrations with messaging systems (AWS SQS/SNS) for biometric data processing</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Spring Boot</span>
+                <span class="chip">AWS SQS/SNS</span>
+                <span class="chip">Oracle Autonomous DB</span>
+                <span class="chip">Microservices</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">System Architect</div>
+                    <div class="exp-company">Atos &middot; Londrina / S&atilde;o Paulo</div>
+                </div>
+                <div class="exp-period">Dec 2014 &ndash; Jul 2019</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Led systems architecture and development projects for prominent clients including NET, Multiplus Fidelidade, and Carrefour</li>
+                <li>Specialized in Oracle SOA Suite middleware, crafting OSB, BPEL, and BPM interfaces with EAI best practices</li>
+                <li>Spearheaded the product definition for Carrefour's HeavyGoods, focusing on usability and sales conversion through event-based microservices</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Oracle SOA Suite</span>
+                <span class="chip">OSB</span>
+                <span class="chip">BPEL</span>
+                <span class="chip">Java</span>
+                <span class="chip">Microservices</span>
+                <span class="chip">EAI</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Consultant / Software Architect</div>
+                    <div class="exp-company">Infracommerce &middot; Greater Londrina</div>
+                </div>
+                <div class="exp-period">Nov 2013 &ndash; Nov 2014</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Led projects within the ACEC e-commerce platform for major clients such as Carrefour Group, Decathlon, and Lan&ccedil;a Perfume</li>
+                <li>Built service-oriented architecture with administrative, sales, and ERP integration layers</li>
+                <li>Implemented Drools for dynamic rule generation and Lucene/Solr for search optimization</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Oracle ADF</span>
+                <span class="chip">JSF</span>
+                <span class="chip">BPEL</span>
+                <span class="chip">OSB</span>
+                <span class="chip">Drools</span>
+                <span class="chip">Solr</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Tech Lead</div>
+                    <div class="exp-company">Accurate &middot; Londrina</div>
+                </div>
+                <div class="exp-period">Aug 2010 &ndash; Nov 2014</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Team leader on projects for CPQD and city hall systems</li>
+                <li>Responsible for understanding customer requirements, performing estimates using function points, defining architecture and assisting the team</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Architecture</span>
+                <span class="chip">Function Points</span>
+                <span class="chip">Team Leadership</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">System Architect</div>
+                    <div class="exp-company">Atos (Serasa client)</div>
+                </div>
+                <div class="exp-period">Jun 2013 &ndash; Nov 2013</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Systems architecture acting within the Serasa client, including architecture definition and specification</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Architecture</span>
+                <span class="chip">Serasa</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Tech Lead</div>
+                    <div class="exp-company">LINT &middot; Londrina</div>
+                </div>
+                <div class="exp-period">Jun 2009 &ndash; Nov 2010</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Led the development of a city hall system for CPQD</li>
+                <li>Managed customer requirements, estimating using function points, defining architecture, and supporting the team through all project phases</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Team Leadership</span>
+                <span class="chip">Architecture</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Systems Analyst</div>
+                    <div class="exp-company">Amadeus IT Group</div>
+                </div>
+                <div class="exp-period">2008</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Collaborated on insurance projects and a tourism development project for Carrefour</li>
+                <li>Worked with Struts 2.0, EJB3, JPA, Spring, Maven, and WebServices</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">Struts 2</span>
+                <span class="chip">EJB3</span>
+                <span class="chip">JPA</span>
+                <span class="chip">Spring</span>
+                <span class="chip">WebServices</span>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Team Leader &amp; Quality Assurance</div>
+                    <div class="exp-company">BSI Tecnologia</div>
+                </div>
+                <div class="exp-period">2003 &ndash; 2008</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Began as a developer, advancing to team leader and quality control roles</li>
+                <li>Managed projects for financial institutions like Ita&uacute; and Bradesco</li>
+                <li>Utilized Java, EJB2, Struts, Hibernate, integrating with Cobol legacy systems</li>
+            </ul>
+            <div class="exp-techs">
+                <span class="chip">Java</span>
+                <span class="chip">EJB2</span>
+                <span class="chip">Struts</span>
+                <span class="chip">Hibernate</span>
+                <span class="chip">Cobol Integration</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="section" id="techstack">
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="tech-grid">
+        <div class="tech-category">
+            <h3>Core Expertise</h3>
+            <p class="tech-desc">Primary stack &mdash; used daily in production systems</p>
+            <div class="tech-chips">
+                <span class="chip">Java</span>
+                <span class="chip">Kotlin</span>
+                <span class="chip">Quarkus</span>
+                <span class="chip">Spring Boot</span>
+                <span class="chip">Apache Kafka</span>
+                <span class="chip">Microservices</span>
+                <span class="chip">REST APIs</span>
+                <span class="chip">DDD</span>
+            </div>
+        </div>
+        <div class="tech-category">
+            <h3>Cloud &amp; DevOps</h3>
+            <p class="tech-desc">Infrastructure and deployment expertise</p>
+            <div class="tech-chips">
+                <span class="chip">AWS</span>
+                <span class="chip">Kubernetes</span>
+                <span class="chip">Docker</span>
+                <span class="chip">AWS Lambda</span>
+                <span class="chip">AWS SQS/SNS</span>
+                <span class="chip">CI/CD</span>
+                <span class="chip">Linux</span>
+            </div>
+        </div>
+        <div class="tech-category">
+            <h3>Data &amp; Integration</h3>
+            <p class="tech-desc">Data management and enterprise integration</p>
+            <div class="tech-chips">
+                <span class="chip">MongoDB</span>
+                <span class="chip">Redis</span>
+                <span class="chip">Oracle DB</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Oracle SOA Suite</span>
+                <span class="chip">OSB/BPEL</span>
+                <span class="chip">Solr</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section class="section" id="certifications">
+    <h2 class="section-title">Certifications</h2>
+
+    <div class="cert-highlighted">
+        <div class="cert-card-big">
+            <div class="cert-icon">&#128200;</div>
+            <div class="cert-info">
+                <h4>Professional Scrum Master (PSM I)</h4>
+                <div class="cert-meta">
+                    <span>Scrum.org</span>
+                    <span>2018</span>
+                </div>
+            </div>
+        </div>
+        <div class="cert-card-big">
+            <div class="cert-icon">&#127760;</div>
+            <div class="cert-info">
+                <h4>EF Level 12 - Upper Intermediate (CEFR B2)</h4>
+                <div class="cert-meta">
+                    <span>EF Education First</span>
+                    <span>2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="cert-section-title">Oracle &amp; Sun Certifications</p>
+    <div class="cert-list">
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Oracle SOA Suite 11g Essentials</p>
+            </div>
+            <span class="cert-year">2015</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Oracle Certified Professional, Java SE 7</p>
+            </div>
+            <span class="cert-year">2014</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#128218;</span>
+                <p>ITIL Foundation Certificate</p>
+            </div>
+            <span class="cert-year">2013</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Enterprise Architect (Java)</p>
+            </div>
+            <span class="cert-year">2010</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Associate for Java Platform</p>
+            </div>
+            <span class="cert-year">2008</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Business Component Developer (EE 5)</p>
+            </div>
+            <span class="cert-year">2007</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Business Component Developer (EE 1.3)</p>
+            </div>
+            <span class="cert-year">2007</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Web Component Developer</p>
+            </div>
+            <span class="cert-year">2006</span>
+        </div>
+        <div class="cert-item">
+            <div class="cert-item-left">
+                <span class="cert-emoji">&#9749;</span>
+                <p>Sun Certified Programmer for Java Platform</p>
+            </div>
+            <span class="cert-year">2006</span>
+        </div>
+    </div>
+</section>
+
+<!-- Education -->
+<section class="section" id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+        <div class="edu-card">
+            <h3>Postgraduate, Computer Software Engineering</h3>
+            <p class="edu-school">Unifil &mdash; Centro Universit&aacute;rio Filad&eacute;lfia</p>
+            <p class="edu-period">2014 &ndash; 2015</p>
+        </div>
+        <div class="edu-card">
+            <h3>Bachelor of Science, Information Systems</h3>
+            <p class="edu-school">Universidade Tecnol&oacute;gica Federal do Paran&aacute; (UTFPR)</p>
+            <p class="edu-period">2003 &ndash; 2007</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+    <div class="contact-content">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out &mdash; whether it's about a project, a role, or a conversation about distributed systems and architecture.</p>
+        <div class="contact-links">
+            <a href="mailto:renato.java@gmail.com" class="contact-link">&#9993; renato.java@gmail.com</a>
+            <a href="tel:+5543996399184" class="contact-link">&#128222; +55 43 99639-9184</a>
+            <a href="https://www.linkedin.com/in/renato-garcia-94bb88a/" class="contact-link" target="_blank">&#128101; LinkedIn</a>
+            <a href="https://github.com/renatojava" class="contact-link" target="_blank">&#128187; GitHub</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    Renato Garcia &middot; Software Architect
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        document.getElementById('themeToggle').textContent = next === 'dark' ? '\u2606' : '\u263E';
+        localStorage.setItem('theme', next);
+    }
+
+    // Load saved theme
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        document.getElementById('themeToggle').textContent = saved === 'dark' ? '\u2606' : '\u263E';
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
 </body>
 </html>
