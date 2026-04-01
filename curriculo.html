@@ -82,10 +82,83 @@
             text-decoration: none;
         }
 
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-grow: 1;
+            margin-left: 24px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+        }
+
         .navbar-actions {
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 12px 24px;
+                border-bottom: 1px solid var(--divider);
+                margin-left: 0;
+            }
+
+            .navbar-links.open {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 10px 0;
+                font-size: 0.95rem;
+            }
+
+            .nav-mobile-toggle {
+                display: flex;
+            }
         }
 
         .btn-icon {
@@ -444,6 +517,110 @@
             gap: 6px;
         }
 
+        .exp-details-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: opacity var(--transition);
+        }
+
+        .exp-details-btn:hover { opacity: 0.75; }
+
+        .exp-details-btn .arrow {
+            display: inline-block;
+            transition: transform var(--transition);
+            font-size: 0.7rem;
+        }
+
+        .exp-details-btn.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .exp-details-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            border-top: none;
+            margin-top: 0;
+        }
+
+        .exp-details-panel.open {
+            max-height: 2000px;
+            border-top: 1px solid var(--divider);
+            margin-top: 16px;
+            padding-top: 16px;
+        }
+
+        .exp-details-panel .detail-section {
+            margin-bottom: 16px;
+        }
+
+        .exp-details-panel .detail-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .exp-details-panel .detail-context {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .exp-details-panel .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-details-panel .detail-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .exp-details-panel .detail-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.6;
+        }
+
+        .exp-highlight-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip-highlight {
+            background: var(--highlight-bg);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            border: 1px solid var(--chip-bg);
+        }
+
         .chip {
             background: var(--chip-bg);
             color: var(--chip-text);
@@ -740,11 +917,19 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar">
-    <a href="#" class="navbar-brand">RG</a>
+<nav class="navbar" id="navbar">
+    <a href="#hero" class="navbar-brand">RG</a>
+    <div class="navbar-links" id="navLinks">
+        <a href="#about" class="nav-link" data-section="about">About</a>
+        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#techstack" class="nav-link" data-section="techstack">Tech Stack</a>
+        <a href="#certifications" class="nav-link" data-section="certifications">Certifications</a>
+        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </div>
     <div class="navbar-actions">
         <button class="btn-icon" onclick="toggleTheme()" id="themeToggle" title="Toggle theme">&#9788;</button>
         <button class="btn-resume" onclick="window.print()" title="Download Resume">&#128196; Resume</button>
+        <button class="btn-icon nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" title="Menu">&#9776;</button>
     </div>
 </nav>
 
@@ -837,6 +1022,7 @@
     <h2 class="section-title">Experience</h2>
     <div class="experience-list">
 
+        <!-- GuBee -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -847,9 +1033,8 @@
             </div>
             <ul class="exp-bullets">
                 <li>Led the design and development of an integration hub system for e-commerce platforms and marketplaces using microservices architecture and Test-Driven Development</li>
-                <li>Implemented Apache Kafka for event-driven messaging and Redis/MongoDB for data management in the technology stack</li>
+                <li>Implemented Apache Kafka for event-driven messaging and Redis/MongoDB for data management</li>
                 <li>Currently transitioning to Quarkus with a native framework and deployment setup on AWS with Kubernetes</li>
-                <li>Mentored a team of developers, managed backlogs, and drove product activities</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Java 21</span>
@@ -858,12 +1043,57 @@
                 <span class="chip">Spring Boot</span>
                 <span class="chip">Apache Kafka</span>
                 <span class="chip">Redis</span>
-                <span class="chip">MongoDB</span>
-                <span class="chip">AWS</span>
-                <span class="chip">Kubernetes</span>
+            </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">GuBee is a SaaS integration hub that connects e-commerce platforms (VTEX, Shopify, WooCommerce, Magento) with major Brazilian marketplaces (Mercado Livre, Amazon, Magalu, Shopee, and 30+ others). As the sole architect since the company's inception, I designed the entire distributed system from scratch and have been evolving it ever since, leading a growing engineering team.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Design and maintain the full microservices architecture handling millions of daily product, order, and stock synchronization events</li>
+                        <li>Define and enforce development standards: Hexagonal Architecture, Domain-Driven Design, and Test-Driven Development across all services</li>
+                        <li>Lead the ongoing migration from Spring Boot to Quarkus native, reducing memory footprint and improving cold-start times</li>
+                        <li>Architect event-driven pipelines using Apache Kafka for real-time marketplace data synchronization</li>
+                        <li>Mentor a team of developers, manage technical backlog, and drive product decisions</li>
+                        <li>Manage infrastructure on AWS with Kubernetes (EKS), Redis clusters, and MongoDB Atlas</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java 21</span>
+                        <span class="chip-highlight">Kotlin</span>
+                        <span class="chip-highlight">Quarkus</span>
+                        <span class="chip-highlight">Spring Boot</span>
+                        <span class="chip-highlight">Apache Kafka</span>
+                        <span class="chip-highlight">Redis</span>
+                        <span class="chip-highlight">MongoDB</span>
+                        <span class="chip-highlight">AWS EKS</span>
+                        <span class="chip-highlight">AWS Lambda</span>
+                        <span class="chip-highlight">Kubernetes</span>
+                        <span class="chip-highlight">Docker</span>
+                        <span class="chip-highlight">GitLab CI</span>
+                        <span class="chip-highlight">Hexagonal Architecture</span>
+                        <span class="chip-highlight">DDD</span>
+                        <span class="chip-highlight">TDD</span>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Built the entire platform from zero &mdash; now processing millions of integration events daily across 30+ marketplace channels</li>
+                        <li>Successfully leading migration to Quarkus native, cutting service memory usage by over 60%</li>
+                        <li>Designed an event-driven architecture that ensures near real-time product/order/stock sync with sub-second latency</li>
+                        <li>Established engineering culture centered on DDD, Hexagonal Architecture, and automated testing</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <!-- Serasa Experian -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -874,8 +1104,8 @@
             </div>
             <ul class="exp-bullets">
                 <li>Technical leadership of the biometrics platform development team, defining architectures and ensuring the quality of deliverables</li>
-                <li>Led technical alignment and requirements refinement meetings with stakeholders, translating business needs into viable technical solutions</li>
-                <li>Contributed to the development of microservices and integrations with messaging systems (AWS SQS/SNS) for biometric data processing</li>
+                <li>Led technical alignment and requirements refinement meetings with stakeholders</li>
+                <li>Developed microservices and integrations with AWS SQS/SNS for biometric data processing</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Java</span>
@@ -884,8 +1114,46 @@
                 <span class="chip">Oracle Autonomous DB</span>
                 <span class="chip">Microservices</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Serasa Experian is Brazil's largest credit bureau. I joined the Biometrics Product team as Tech Lead, responsible for the platform that handles identity verification through biometric data &mdash; a critical product in Brazil's growing digital identity ecosystem.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Lead a development team building the biometrics verification platform used by financial institutions and fintechs</li>
+                        <li>Define system architecture and ensure quality standards across all microservices</li>
+                        <li>Run technical alignment and requirements refinement sessions with product and business stakeholders</li>
+                        <li>Translate complex business requirements into viable, scalable technical solutions</li>
+                        <li>Design asynchronous messaging flows using AWS SQS/SNS for biometric data ingestion and processing</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java</span>
+                        <span class="chip-highlight">Spring Boot</span>
+                        <span class="chip-highlight">AWS SQS</span>
+                        <span class="chip-highlight">AWS SNS</span>
+                        <span class="chip-highlight">Oracle Autonomous Database</span>
+                        <span class="chip-highlight">Microservices</span>
+                        <span class="chip-highlight">REST APIs</span>
+                        <span class="chip-highlight">Docker</span>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Contributed to one of Brazil's most critical identity verification platforms, serving millions of biometric checks</li>
+                        <li>Bridged technical and business teams, translating stakeholder needs into well-defined engineering tasks</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Atos -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -896,8 +1164,8 @@
             </div>
             <ul class="exp-bullets">
                 <li>Led systems architecture and development projects for prominent clients including NET, Multiplus Fidelidade, and Carrefour</li>
-                <li>Specialized in Oracle SOA Suite middleware, crafting OSB, BPEL, and BPM interfaces with EAI best practices</li>
-                <li>Spearheaded the product definition for Carrefour's HeavyGoods, focusing on usability and sales conversion through event-based microservices</li>
+                <li>Specialized in Oracle SOA Suite middleware, crafting OSB, BPEL, and BPM interfaces</li>
+                <li>Spearheaded the product definition for Carrefour's HeavyGoods platform</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Oracle SOA Suite</span>
@@ -907,8 +1175,48 @@
                 <span class="chip">Microservices</span>
                 <span class="chip">EAI</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Atos is a global IT services company. During nearly five years at Atos, I worked as a system architect embedded in major enterprise clients &mdash; NET/Claro (telecom), Multiplus Fidelidade (loyalty), and Carrefour (retail). My role combined architecture definition, team leadership, technical proposals, and hands-on integration work using Oracle's enterprise middleware stack.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Define system architecture and lead development for large-scale enterprise integration projects</li>
+                        <li>Craft technical and commercial proposals, leading solution defense sessions with clients</li>
+                        <li>Design and implement OSB, BPEL, and BPM interfaces following VETO and EAI (Enterprise Application Integration) best practices</li>
+                        <li>Lead cross-functional teams across multiple client engagements simultaneously</li>
+                        <li>Spearhead Carrefour's HeavyGoods product definition, focusing on enhancing usability and driving sales conversion through event-based microservices</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java</span>
+                        <span class="chip-highlight">Oracle SOA Suite</span>
+                        <span class="chip-highlight">Oracle Service Bus (OSB)</span>
+                        <span class="chip-highlight">BPEL</span>
+                        <span class="chip-highlight">BPM</span>
+                        <span class="chip-highlight">Microservices</span>
+                        <span class="chip-highlight">EAI Patterns</span>
+                        <span class="chip-highlight">REST/SOAP</span>
+                        <span class="chip-highlight">Oracle Database</span>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Served as the go-to architect for three of Brazil's most prominent enterprise clients simultaneously</li>
+                        <li>Carrefour HeavyGoods product increased online sales conversion through a tool-driven, event-based architecture</li>
+                        <li>Deepened expertise in Enterprise Integration Patterns that later influenced the event-driven design at GuBee</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Infracommerce -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -918,7 +1226,7 @@
                 <div class="exp-period">Nov 2013 &ndash; Nov 2014</div>
             </div>
             <ul class="exp-bullets">
-                <li>Led projects within the ACEC e-commerce platform for major clients such as Carrefour Group, Decathlon, and Lan&ccedil;a Perfume</li>
+                <li>Led projects within the ACEC e-commerce platform for Carrefour Group, Decathlon, and Lan&ccedil;a Perfume</li>
                 <li>Built service-oriented architecture with administrative, sales, and ERP integration layers</li>
                 <li>Implemented Drools for dynamic rule generation and Lucene/Solr for search optimization</li>
             </ul>
@@ -929,21 +1237,61 @@
                 <span class="chip">BPEL</span>
                 <span class="chip">OSB</span>
                 <span class="chip">Drools</span>
-                <span class="chip">Solr</span>
+            </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Infracommerce is one of Brazil's leading full-service e-commerce operations companies. I joined as project leader and software architect for the ACEC platform &mdash; a white-label e-commerce solution that powered major retail brands. The platform was built on a service-oriented architecture with clearly separated layers for administration, sales, and ERP/legacy integration.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Lead project development and architecture for the ACEC e-commerce platform serving Carrefour Group, Decathlon, and Lan&ccedil;a Perfume</li>
+                        <li>Design the administrative layer using Oracle ADF for deal management, customer registration, and product maintenance</li>
+                        <li>Optimize the sales layer with REST APIs, JSF, and Lucene/Solr for search and product discovery</li>
+                        <li>Implement a business rules engine with Drools for dynamic pricing and promotion rule generation</li>
+                        <li>Build the integration layer using BPEL and OSB services for data exchange with clients' ERPs</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java</span>
+                        <span class="chip-highlight">Oracle ADF</span>
+                        <span class="chip-highlight">JSF</span>
+                        <span class="chip-highlight">Solr / Lucene</span>
+                        <span class="chip-highlight">Drools</span>
+                        <span class="chip-highlight">BPEL</span>
+                        <span class="chip-highlight">OSB</span>
+                        <span class="chip-highlight">Oracle Database</span>
+                        <span class="chip-highlight">REST</span>
+                        <span class="chip-highlight">SOAP</span>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Platform served some of Brazil's largest retail brands with high-traffic e-commerce operations</li>
+                        <li>The Drools rules engine enabled non-technical teams to manage dynamic pricing without code changes</li>
+                        <li>Solr-powered search significantly improved product discovery and conversion rates</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <!-- Accurate -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
                     <div class="exp-role">Tech Lead</div>
-                    <div class="exp-company">Accurate &middot; Londrina</div>
+                    <div class="exp-company">Accurate &middot; Londrina / S&atilde;o Paulo</div>
                 </div>
                 <div class="exp-period">Aug 2010 &ndash; Nov 2014</div>
             </div>
             <ul class="exp-bullets">
-                <li>Team leader on projects for CPQD and city hall systems</li>
-                <li>Responsible for understanding customer requirements, performing estimates using function points, defining architecture and assisting the team</li>
+                <li>Team leader on projects for CPQD developing city hall management systems</li>
+                <li>Responsible for requirements analysis, function point estimation, architecture definition, and team coordination</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Java</span>
@@ -951,26 +1299,73 @@
                 <span class="chip">Function Points</span>
                 <span class="chip">Team Leadership</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Accurate is a software consultancy that was later acquired by Infracommerce. During this period I led development teams on government projects for CPQD (one of Brazil's largest telecom R&amp;D centers), building city administration systems. This role sharpened my skills in requirements engineering, estimation, and team leadership.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Lead the development team on government and public-sector systems projects</li>
+                        <li>Gather and analyze customer requirements, translating them into technical specifications</li>
+                        <li>Perform project estimation using Function Point Analysis</li>
+                        <li>Define system architecture and technology stack for each project</li>
+                        <li>Coordinate development activities and ensure delivery quality</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Successfully delivered multiple city administration systems for CPQD</li>
+                        <li>Built strong competency in project estimation and requirements engineering that carried through my career</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Atos (Serasa) -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
                     <div class="exp-role">System Architect</div>
-                    <div class="exp-company">Atos (Serasa client)</div>
+                    <div class="exp-company">Atos (Serasa client) &middot; S&atilde;o Paulo</div>
                 </div>
                 <div class="exp-period">Jun 2013 &ndash; Nov 2013</div>
             </div>
             <ul class="exp-bullets">
-                <li>Systems architecture acting within the Serasa client, including architecture definition and specification</li>
+                <li>Systems architecture embedded within Serasa, including architecture definition and technical specification</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Java</span>
                 <span class="chip">Architecture</span>
                 <span class="chip">Serasa</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Short-term engagement at Atos embedded within Serasa (now Serasa Experian) &mdash; Brazil's largest credit bureau. This was my first exposure to the financial data and credit scoring domain, years before returning to Serasa as a Tech Lead in 2025.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Define system architecture for credit-related applications</li>
+                        <li>Produce technical specifications and architecture documentation</li>
+                        <li>Collaborate with Serasa's internal engineering teams on integration points</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>First professional exposure to the financial/credit data domain that would later lead to the 2025 Tech Lead role at Serasa Experian</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- LINT -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -981,15 +1376,32 @@
             </div>
             <ul class="exp-bullets">
                 <li>Led the development of a city hall system for CPQD</li>
-                <li>Managed customer requirements, estimating using function points, defining architecture, and supporting the team through all project phases</li>
+                <li>Managed customer requirements, architecture definition, and team coordination through all project phases</li>
             </ul>
             <div class="exp-techs">
                 <span class="chip">Java</span>
                 <span class="chip">Team Leadership</span>
                 <span class="chip">Architecture</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">LINT was a Londrina-based software house where I served as Tech Lead for government projects. The main engagement was developing a comprehensive city administration system for CPQD, managing the full project lifecycle from requirements through delivery.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Lead the development team through all phases of the CPQD city hall project</li>
+                        <li>Gather and document customer requirements</li>
+                        <li>Estimate project scope using function point analysis</li>
+                        <li>Define system architecture and guide the team through implementation</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Amadeus -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -1010,8 +1422,36 @@
                 <span class="chip">Spring</span>
                 <span class="chip">WebServices</span>
             </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">Amadeus IT Group is a global technology company serving the travel and tourism industry. This role deepened my proficiency in requirements definition, architecture design, and Java enterprise development with the modern (for the era) Java EE stack.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Develop insurance-related applications using enterprise Java technologies</li>
+                        <li>Contribute to a tourism platform project for Carrefour</li>
+                        <li>Design and implement REST and SOAP web services for system integration</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java</span>
+                        <span class="chip-highlight">Struts 2.0</span>
+                        <span class="chip-highlight">EJB3</span>
+                        <span class="chip-highlight">JPA</span>
+                        <span class="chip-highlight">Spring</span>
+                        <span class="chip-highlight">Maven</span>
+                        <span class="chip-highlight">WebServices</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- BSI -->
         <div class="exp-card">
             <div class="exp-header">
                 <div>
@@ -1030,7 +1470,43 @@
                 <span class="chip">EJB2</span>
                 <span class="chip">Struts</span>
                 <span class="chip">Hibernate</span>
-                <span class="chip">Cobol Integration</span>
+                <span class="chip">Cobol</span>
+            </div>
+            <button class="exp-details-btn" onclick="toggleDetails(this)"><span class="arrow">&#9654;</span> View Details</button>
+            <div class="exp-details-panel">
+                <div class="detail-section">
+                    <div class="detail-label">Context</div>
+                    <p class="detail-context">BSI Tecnologia was a São Paulo-based software company specialized in financial sector applications. This is where my career began &mdash; starting as a junior developer and growing into team leadership and quality assurance over five years of working with some of Brazil's largest banks.</p>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Key Responsibilities</div>
+                    <ul class="detail-list">
+                        <li>Develop and maintain Java applications for Ita&uacute; and Bradesco banking systems</li>
+                        <li>Integrate Java applications with mainframe Cobol legacy systems</li>
+                        <li>Lead development teams on banking project deliveries</li>
+                        <li>Establish quality assurance processes and conduct code reviews</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Full Tech Stack</div>
+                    <div class="exp-highlight-chips">
+                        <span class="chip-highlight">Java</span>
+                        <span class="chip-highlight">EJB2</span>
+                        <span class="chip-highlight">Struts</span>
+                        <span class="chip-highlight">Hibernate</span>
+                        <span class="chip-highlight">Cobol Integration</span>
+                        <span class="chip-highlight">Oracle Database</span>
+                        <span class="chip-highlight">Mainframe</span>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Highlights</div>
+                    <ul class="detail-list">
+                        <li>Career progression from junior developer to team leader and QA within the same company</li>
+                        <li>Built deep expertise in financial systems and enterprise Java that became the foundation of my career</li>
+                        <li>Rare experience integrating modern Java with mainframe Cobol systems &mdash; a skill critical in the banking industry</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -1216,6 +1692,12 @@
 </footer>
 
 <script>
+    function toggleDetails(btn) {
+        btn.classList.toggle('open');
+        const panel = btn.nextElementSibling;
+        panel.classList.toggle('open');
+    }
+
     function toggleTheme() {
         const html = document.documentElement;
         const current = html.getAttribute('data-theme');
@@ -1238,8 +1720,39 @@
             e.preventDefault();
             const target = document.querySelector(a.getAttribute('href'));
             if (target) target.scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('open');
         });
     });
+
+    // Active section tracking on scroll
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    const sections = ['about', 'experience', 'techstack', 'certifications', 'contact'];
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-link[data-section="${entry.target.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 40) {
+            navbar.style.borderBottomColor = 'var(--divider)';
+        } else {
+            navbar.style.borderBottomColor = 'transparent';
+        }
+    }, { passive: true });
 </script>
 
 </body>
