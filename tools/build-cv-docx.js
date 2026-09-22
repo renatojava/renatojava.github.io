@@ -50,9 +50,9 @@ const CV = {
         'Grew and lead the engineering team; set Hexagonal Architecture, DDD and TDD as the default.',
       ], tech: 'Java 25, Kotlin, Quarkus, Spring Boot, Apache Kafka, Redis, MongoDB, OpenSearch, Kubernetes, AWS, Tencent Cloud, OpenTelemetry, Koog' },
       { role: 'Tech Lead', org: 'Serasa Experian', meta: 'Contract · Remote', when: 'Jan 2025 – May 2025', bullets: [
-        'Technical lead of the biometrics platform team: defined the architecture and owned delivery quality.',
-        'Ran technical alignment and requirements refinement with product and business stakeholders.',
-        'Built microservices and asynchronous flows on AWS SQS/SNS for biometric data processing.',
+        'Led a biometrics platform team of 6 engineers and 1 QA, working alongside other product teams, at Brazil\u2019s largest credit bureau.',
+        'The platform verifies identity through facial biometrics and liveness for account opening and fraud prevention, used by clients such as Vivo, Claro and Itaú.',
+        'Owned the architecture and delivery quality of the team\u2019s microservices; designed asynchronous processing on AWS SQS/SNS; coordinated technical alignment across teams and with product and business stakeholders.',
       ], tech: 'Java, Spring Boot, AWS SQS/SNS, Oracle Autonomous Database' },
       { role: 'System Architect', org: 'Atos', meta: 'Londrina / São Paulo', when: 'Dec 2014 – Jul 2019', bullets: [
         'Architect on enterprise integration programmes for NET/Claro, Multiplus Fidelidade and Carrefour.',
@@ -127,9 +127,9 @@ const CV = {
         'Formei e lidero o time de engenharia; defini Arquitetura Hexagonal, DDD e TDD como padrão.',
       ], tech: 'Java 25, Kotlin, Quarkus, Spring Boot, Apache Kafka, Redis, MongoDB, OpenSearch, Kubernetes, AWS, Tencent Cloud, OpenTelemetry, Koog' },
       { role: 'Tech Lead', org: 'Serasa Experian', meta: 'Contrato · Remoto', when: 'jan 2025 – mai 2025', bullets: [
-        'Liderança técnica do time da plataforma de biometria: definição de arquitetura e qualidade das entregas.',
-        'Condução de alinhamentos técnicos e refinamento de requisitos com produto e negócio.',
-        'Desenvolvimento de microsserviços e fluxos assíncronos em AWS SQS/SNS para processamento de dados biométricos.',
+        'Liderei o time da plataforma de biometria, com 6 desenvolvedores e 1 QA, atuando em conjunto com outros times de produto, no maior bureau de crédito do Brasil.',
+        'A plataforma valida identidade por biometria facial e prova de vida, na abertura de contas e na prevenção a fraudes, para clientes como Vivo, Claro e Itaú.',
+        'Responsável pela arquitetura e qualidade das entregas dos microsserviços do time; desenhei o processamento assíncrono em AWS SQS/SNS; conduzi alinhamentos técnicos entre times e com produto e negócio.',
       ], tech: 'Java, Spring Boot, AWS SQS/SNS, Oracle Autonomous Database' },
       { role: 'Arquiteto de Sistemas', org: 'Atos', meta: 'Londrina / São Paulo', when: 'dez 2014 – jul 2019', bullets: [
         'Arquiteto em programas de integração corporativa para NET/Claro, Multiplus Fidelidade e Carrefour.',
