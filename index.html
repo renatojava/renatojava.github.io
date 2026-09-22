@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Renato Garcia — Software Architect</title>
-    <meta name="description" content="Renato Garcia — Software Architect with 20+ years building distributed systems. Microservices, event-driven architecture and e-commerce integration in Java, Kotlin, Quarkus, Kafka and Kubernetes.">
+    <title>Renato Garcia — Software Architect · Distributed Systems &amp; Applied AI</title>
+    <meta name="description" content="Renato Garcia — Software Architect with 20+ years building distributed systems. Architect of an integration platform serving 30+ marketplaces and founding engineer of a production multi-agent AI platform. Java, Kotlin, Kafka, Kubernetes, Spring AI.">
     <meta name="author" content="Renato Garcia">
     <link rel="canonical" href="https://renatojava.github.io/">
 
     <meta property="og:type" content="profile">
-    <meta property="og:title" content="Renato Garcia — Software Architect">
-    <meta property="og:description" content="20+ years building distributed systems. Microservices, event-driven architecture and e-commerce integration in Java, Kotlin, Quarkus, Kafka and Kubernetes.">
+    <meta property="og:title" content="Renato Garcia — Software Architect · Distributed Systems &amp; Applied AI">
+    <meta property="og:description" content="20+ years building distributed systems. Event-driven integration at marketplace scale and production LLM agents, in Java, Kotlin, Kafka, Kubernetes and Spring AI.">
     <meta property="og:url" content="https://renatojava.github.io/">
     <meta property="og:image" content="https://renatojava.github.io/avatar.jpg">
     <meta property="profile:first_name" content="Renato">
@@ -42,7 +42,10 @@
         "addressRegion": "PR",
         "addressCountry": "BR"
       },
-      "worksFor": { "@type": "Organization", "name": "GuBee" },
+      "worksFor": [
+        { "@type": "Organization", "name": "GuBee" },
+        { "@type": "Organization", "name": "Integra.do" }
+      ],
       "alumniOf": [
         { "@type": "CollegeOrUniversity", "name": "Universidade Tecnológica Federal do Paraná (UTFPR)" },
         { "@type": "CollegeOrUniversity", "name": "Unifil — Centro Universitário Filadélfia" }
@@ -55,7 +58,9 @@
         "Software Architecture", "Microservices", "Event-Driven Architecture",
         "Domain-Driven Design", "Hexagonal Architecture", "Java", "Kotlin",
         "Quarkus", "Spring Boot", "Apache Kafka", "Kubernetes", "AWS",
-        "E-commerce Integration", "Enterprise Application Integration"
+        "E-commerce Integration", "Enterprise Application Integration",
+        "LLM Applications", "Multi-Agent Systems", "Spring AI", "JetBrains Koog", "Retrieval-Augmented Generation",
+        "OpenTelemetry", "Cloud Migration"
       ]
     }
     </script>
@@ -567,6 +572,8 @@
             font-size: var(--text-base);
         }
 
+        .about-highlight p b { color: var(--text-primary); font-weight: 600; }
+
         .about-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -822,7 +829,7 @@
            ═══════════════════════════════════════════════════ */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
         }
 
@@ -1225,7 +1232,7 @@
             }
 
             .about-grid { grid-template-columns: 1fr; gap: 10px; }
-            .about-lead { font-size: 9pt; margin-bottom: 8px; max-width: none; }
+            .about-lead { display: none; } /* the print header already carries the summary */
             .about-highlight { margin-bottom: 3px; max-width: none; }
             .about-highlight p { font-size: 9pt; }
             .about-stats { display: none; }
@@ -1251,6 +1258,15 @@
             .exp-bullets li { font-size: 9pt; margin-bottom: 2px; }
             .exp-details-panel { display: none !important; }
 
+            /* Early career stays on paper, compressed: one line, no chips */
+            .exp-card.is-early { padding-bottom: 6px; margin-bottom: 6px; }
+            .exp-card.is-early .exp-header { margin-bottom: 2px; }
+            .exp-card.is-early .exp-meta,
+            .exp-card.is-early .exp-techs,
+            .exp-card.is-early .exp-bullets li + li { display: none; }
+            .exp-card.is-early .exp-bullets { margin-bottom: 0; }
+            .tech-desc { display: none; }
+
             .chip, .chip-outline, .hero-chip {
                 border: 1px solid #D1D5DB;
                 background: #fff !important;
@@ -1259,14 +1275,14 @@
                 padding: 1px 7px;
             }
 
-            .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
             .tech-category { border: none; padding: 0; break-inside: avoid; }
             .tech-category h3 { font-size: 10pt; }
 
             .cert-featured { grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 11px; }
             .cert-card-big { border: none; padding: 0; box-shadow: none; break-inside: avoid; }
             .cert-icon { display: none; }
-            .cert-list { gap: 0 24px; }
+            .cert-list { grid-template-columns: 1fr 1fr; gap: 0 24px; }
             .cert-item { padding: 4px 0; break-inside: avoid; }
             .cert-name { font-size: 9pt; }
 
@@ -1341,8 +1357,8 @@
 <header class="print-header" aria-hidden="true">
     <div>
         <h1>Renato Garcia</h1>
-        <p class="print-role">Software Architect &amp; Tech Lead</p>
-        <p class="print-summary">20+ years building distributed systems. Microservices, event-driven architecture and e-commerce integration in Java, Kotlin, Quarkus, Kafka and Kubernetes.</p>
+        <p class="print-role">Software Architect &middot; Distributed Systems &amp; Applied AI</p>
+        <p class="print-summary">20+ years building distributed systems. Architect of GuBee&rsquo;s event-driven integration platform (30+ marketplaces, ~170 production workloads) and founding engineer of INAI, a multi-agent LLM platform running in production. I set technical direction across teams and still ship the hard parts.</p>
     </div>
     <ul class="print-contacts">
         <li>renato.java@gmail.com</li>
@@ -1360,8 +1376,8 @@
     <div class="hero-content">
         <img src="avatar.jpg" alt="Portrait of Renato Garcia" class="hero-avatar" width="116" height="116">
         <h1>Renato Garcia</h1>
-        <p class="hero-role">Software Architect &amp; Tech Lead</p>
-        <p class="hero-tagline">I design and run the distributed systems that keep e-commerce platforms and marketplaces in sync &mdash; millions of product, price, stock and order events a day.</p>
+        <p class="hero-role">Software Architect &middot; Distributed Systems &amp; Applied AI</p>
+        <p class="hero-tagline">I design and run the distributed systems that keep e-commerce platforms and 30+ marketplaces in sync &mdash; and I built, from the first commit, a multi-agent AI platform that serves real-estate leads on WhatsApp in production.</p>
         <p class="hero-place">
             <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
             Londrina, Brazil
@@ -1373,7 +1389,8 @@
             <span class="hero-chip">Quarkus</span>
             <span class="hero-chip">Apache Kafka</span>
             <span class="hero-chip">Kubernetes</span>
-            <span class="hero-chip">AWS</span>
+            <span class="hero-chip">Spring AI</span>
+            <span class="hero-chip">LLM Agents</span>
         </div>
 
         <div class="hero-buttons">
@@ -1399,8 +1416,8 @@
             </div>
             <div class="hero-metric-divider" aria-hidden="true"></div>
             <div class="hero-metric">
-                <strong>10</strong>
-                <span>Professional certifications</span>
+                <strong>~170</strong>
+                <span>Production workloads under my architecture</span>
             </div>
         </div>
     </div>
@@ -1412,20 +1429,20 @@
     <div class="about-grid">
         <div>
             <p class="about-lead">
-                Software architect with 20+ years in production systems, most of it spent on integration: making systems that were never designed to talk to each other exchange data reliably, at volume, without losing an order. At GuBee I have owned the architecture since day one &mdash; a hub that connects e-commerce platforms to more than 30 Brazilian marketplaces &mdash; and I lead the engineering team that builds it.
+                Software architect with 20+ years in production systems, most of it spent on integration: making systems that were never designed to talk to each other exchange data reliably, at volume, without losing an order. At GuBee I have owned the architecture since day one &mdash; a hub connecting e-commerce platforms to more than 30 Brazilian marketplaces, now around 170 workloads &mdash; and I set the technical direction the engineering teams build on. Since 2025 I am also the founding engineer of INAI, a multi-agent LLM platform for real-estate companies, running in production.
             </p>
 
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p>Designed and still evolve an event-driven integration hub on Apache Kafka, built with microservices, Hexagonal Architecture and TDD</p>
+                <p><b>Org-wide technical direction:</b> architecture standards, cross-team migrations (cloud, Java 25, GraalVM native, OpenTelemetry) and the roadmap that sequences them</p>
             </div>
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p>Deep in the JVM: Java, Kotlin, Quarkus and Spring Boot, deployed on AWS and Kubernetes</p>
+                <p><b>Applied AI in production:</b> multi-agent systems, RAG, guardrails and LLM cost observability with Spring AI &mdash; plus the AI engineering toolkit my teams use daily</p>
             </div>
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p>Track record across e-commerce, telecom, banking, credit and public sector &mdash; as architect, tech lead and consultant</p>
+                <p><b>Hands-on at depth:</b> Java, Kotlin, Quarkus, Spring Boot, Kafka, Kubernetes &mdash; across e-commerce, telecom, banking, credit and public sector</p>
             </div>
         </div>
 
@@ -1439,12 +1456,12 @@
                 <span>Marketplace channels</span>
             </div>
             <div class="stat-card">
-                <strong>10</strong>
-                <span>Certifications</span>
+                <strong>~170</strong>
+                <span>Production workloads</span>
             </div>
             <div class="stat-card">
-                <strong>5+</strong>
-                <span>Industries served</span>
+                <strong>2</strong>
+                <span>Platforms built from zero</span>
             </div>
         </div>
     </div>
@@ -1454,6 +1471,86 @@
 <section class="section" id="experience">
     <h2 class="section-title">Experience</h2>
     <div class="experience-list">
+
+        <!-- Integra.do / INAI -->
+        <article class="exp-card is-current">
+            <div class="exp-header">
+                <div>
+                    <h3 class="exp-role">Founding Engineer &amp; AI Architect</h3>
+                    <p class="exp-company"><b>Integra.do</b> &mdash; INAI
+                        <span class="exp-meta">Multi-agent AI platform for real estate &middot; Remote</span>
+                    </p>
+                    <span class="exp-tag">Current &middot; concurrent with GuBee</span>
+                </div>
+                <p class="exp-period">Jul 2025 &ndash; Present</p>
+            </div>
+            <ul class="exp-bullets">
+                <li>Architected and built INAI from the first commit: a multi-agent LLM platform that qualifies and serves real-estate leads 24/7 on WhatsApp &mdash; live in production since January 2026 at Imobili&aacute;ria Inglaterra, the launch client</li>
+                <li>Designed the multi-agent core: 5 specialist agents (SDR, billing, support, maintenance, launches) behind a hybrid router (keyword + semantic + session affinity, LLM tie-break) with agent-to-agent handoff and per-tenant overrides</li>
+                <li>Built zero-loss WhatsApp ingestion on Redis Streams (consumer groups, pending-entry recovery, per-tenant debounce) and lead ingestion from ZAP, VivaReal, OLX and ImovelWeb with dedupe and replay protection</li>
+                <li>Wrote ~70% of 2,400+ commits and every architecture and roadmap document; set the hexagonal, testing and observability standards the engineering team now builds on</li>
+            </ul>
+            <div class="exp-techs chip-row">
+                <span class="chip">Kotlin</span>
+                <span class="chip">Spring Boot 4</span>
+                <span class="chip">Spring AI</span>
+                <span class="chip">PostgreSQL + pgvector</span>
+                <span class="chip">Redis Streams</span>
+                <span class="chip">Kubernetes</span>
+            </div>
+            <button class="exp-details-btn" type="button" aria-expanded="false" aria-controls="d-integrado">
+                <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+                <span class="exp-details-label">Details</span>
+            </button>
+            <div class="exp-details-panel" id="d-integrado">
+                <div class="exp-details-inner">
+                    <div class="detail-section">
+                        <p class="rule-label">Context</p>
+                        <p class="detail-context">INAI is Integra.do&rsquo;s AI platform for real-estate companies. Its agent persona, Bruna, works as a digital SDR on WhatsApp: it qualifies leads coming from property portals and chat, searches and recommends listings, and hands qualified leads to brokers. Imobili&aacute;ria Inglaterra was the launch client and has run on it in production since January 2026. I founded the codebase, CI and Kubernetes setup, wrote the AI core, and drive the roadmap that turns it into a multi-tenant SaaS.</p>
+                    </div>
+                    <div class="detail-section">
+                        <p class="rule-label">Responsibilities</p>
+                        <ul class="detail-list">
+                            <li>Own the system architecture: hexagonal Kotlin services, multi-tenant data model, agent runtime and integration adapters</li>
+                            <li>Design retrieval: hybrid search (pgvector + SQL + full text fused with RRF) with a local ONNX cross-encoder reranker, and geo ranking on PostGIS and OpenStreetMap POIs</li>
+                            <li>Build the agent runtime: dynamic tools (HTTP, sandboxed GraalJS scripts, MCP), SpEL rules, Handlebars prompt templates, three-layer memory, semantic LLM cache and two-tier guardrails</li>
+                            <li>Control LLM cost and latency by tiering four models by task (chat, classification, insights, transcription) and tracking spend per tenant</li>
+                            <li>Write the platform roadmap (admin and RBAC, financing simulation, CRM connectors, SSO, developer portal and SDKs, voice) and sync it with Jira</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <p class="rule-label">Stack</p>
+                        <div class="chip-row">
+                            <span class="chip-outline">Kotlin 2.3</span>
+                            <span class="chip-outline">Java 25</span>
+                            <span class="chip-outline">Spring Boot 4</span>
+                            <span class="chip-outline">Spring AI 2</span>
+                            <span class="chip-outline">OpenAI</span>
+                            <span class="chip-outline">MCP</span>
+                            <span class="chip-outline">PostgreSQL</span>
+                            <span class="chip-outline">pgvector</span>
+                            <span class="chip-outline">PostGIS</span>
+                            <span class="chip-outline">Redis Streams</span>
+                            <span class="chip-outline">WhatsApp Cloud API</span>
+                            <span class="chip-outline">OpenTelemetry</span>
+                            <span class="chip-outline">Grafana</span>
+                            <span class="chip-outline">Kubernetes</span>
+                            <span class="chip-outline">GitLab CI</span>
+                            <span class="chip-outline">React</span>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <p class="rule-label">Impact</p>
+                        <ul class="detail-list">
+                            <li>Took the product from an empty repository to its first client in production in about six months</li>
+                            <li>Led a hardening milestone: tenant isolation on 43 controllers, BCrypt API keys migrated with a dual-read window, ~200 blocking calls removed, oversized modules split</li>
+                            <li>~3,200 automated tests guard the agent flows, routing and ingestion paths</li>
+                            <li>11 Grafana dashboards make LLM cost, latency, prompt-cache hit ratio and the re-engagement funnel visible per tenant</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
 
         <!-- GuBee -->
         <article class="exp-card is-current">
@@ -1468,18 +1565,20 @@
                 <p class="exp-period">Jul 2019 &ndash; Present</p>
             </div>
             <ul class="exp-bullets">
-                <li>Own the architecture of an integration hub connecting e-commerce platforms to 30+ marketplaces, built on microservices and Test-Driven Development</li>
-                <li>Designed the event-driven backbone on Apache Kafka, with Redis and MongoDB for state and caching</li>
-                <li>Leading the migration to Quarkus native on AWS and Kubernetes, cutting service memory footprint by over 60%</li>
+                <li>Own the architecture of an integration hub connecting e-commerce platforms to 30+ marketplaces &mdash; about 170 production workloads on an event-driven Apache Kafka backbone</li>
+                <li>Planned and lead the platform&rsquo;s cloud migration (Huawei Cloud to Tencent Cloud): ~170 workloads, 36+ MongoDB databases, 25+ Kafka consumer groups, cut over behind feature flags with rollback at every step</li>
+                <li>Drive fleet-wide modernisation: Java 25, Quarkus native (over 60% less memory per service) and OpenTelemetry tracing, metrics and logs on Tempo, Loki and Mimir</li>
+                <li>Lead GuBee&rsquo;s AI products on JetBrains Koog: conversational commerce on WhatsApp (discovery to PIX checkout on the shared order engine) and AI catalog enrichment (categorisation, attribute extraction, titles, human-in-the-loop)</li>
+                <li>Built the company&rsquo;s AI engineering toolkit &mdash; 15 Claude Code plugins encoding our migrations, scaffolding, troubleshooting and architecture checks &mdash; so every team applies the same standards</li>
                 <li>Grew and lead the engineering team; set the standards for Hexagonal Architecture, DDD and automated testing</li>
             </ul>
             <div class="exp-techs chip-row">
-                <span class="chip">Java 21</span>
+                <span class="chip">Java 25</span>
                 <span class="chip">Kotlin</span>
                 <span class="chip">Quarkus</span>
-                <span class="chip">Spring Boot</span>
                 <span class="chip">Apache Kafka</span>
                 <span class="chip">Kubernetes</span>
+                <span class="chip">OpenTelemetry</span>
             </div>
             <button class="exp-details-btn" type="button" aria-expanded="false" aria-controls="d-gubee">
                 <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
@@ -1499,13 +1598,18 @@
                             <li>Lead the migration from Spring Boot to Quarkus native, reducing memory footprint and cold-start times</li>
                             <li>Architect event-driven pipelines on Apache Kafka for real-time marketplace synchronisation</li>
                             <li>Mentor developers, own the technical backlog and drive product decisions with the business</li>
-                            <li>Run the infrastructure: AWS EKS, Redis clusters, MongoDB Atlas</li>
+                            <li>Run the infrastructure: Kubernetes, Kafka, Redis and MongoDB clusters &mdash; first on AWS, now on Tencent Cloud</li>
+                            <li>Write the migration playbooks (strategy, service checklists, secrets, storage, cutover order) that let several engineers migrate services in parallel</li>
+                            <li>Choose the agent framework from head-to-head POCs of Koog, Embabel, LangChain4j and Spring AI; Koog went to production</li>
+                            <li>Architect the AI checkout as a thin BFF: commerce rules stay in the core engine (enforced by ArchUnit), while the BFF owns conversation, guardrails, LGPD consent and the WhatsApp 24-hour window; quality is gated by DeepEval suites for faithfulness, refusal and prompt injection</li>
+                            <li>Design catalog enrichment with confidence scoring and human review, semantic search on OpenSearch kNN, and Kafka-driven processing</li>
+                            <li>Codify recurring engineering work as AI agent skills: new marketplace scaffolding, Java and framework upgrades, OTel setup, CI setup, production troubleshooting</li>
                         </ul>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Stack</p>
                         <div class="chip-row">
-                            <span class="chip-outline">Java 21</span>
+                            <span class="chip-outline">Java 25</span>
                             <span class="chip-outline">Kotlin</span>
                             <span class="chip-outline">Quarkus</span>
                             <span class="chip-outline">Spring Boot</span>
@@ -1516,7 +1620,14 @@
                             <span class="chip-outline">AWS Lambda</span>
                             <span class="chip-outline">Kubernetes</span>
                             <span class="chip-outline">Docker</span>
+                            <span class="chip-outline">Tencent Cloud</span>
                             <span class="chip-outline">GitLab CI</span>
+                            <span class="chip-outline">OpenTelemetry</span>
+                            <span class="chip-outline">Grafana</span>
+                            <span class="chip-outline">GraalVM</span>
+                            <span class="chip-outline">JetBrains Koog</span>
+                            <span class="chip-outline">Spring AI</span>
+                            <span class="chip-outline">OpenSearch</span>
                             <span class="chip-outline">Hexagonal Architecture</span>
                             <span class="chip-outline">DDD</span>
                             <span class="chip-outline">TDD</span>
@@ -1529,6 +1640,7 @@
                             <li>Quarkus native migration cut service memory usage by over 60%</li>
                             <li>Event-driven design holds product, order and stock sync at sub-second latency</li>
                             <li>Established the engineering culture: DDD, Hexagonal Architecture and automated testing as the default</li>
+                            <li>Turned one-off expert work (upgrades, migrations, new integrations) into repeatable, AI-assisted playbooks the whole team runs</li>
                         </ul>
                     </div>
                 </div>
@@ -1745,7 +1857,7 @@
         </article>
 
         <!-- Accurate -->
-        <article class="exp-card">
+        <article class="exp-card is-early">
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">Tech Lead</h3>
@@ -1797,7 +1909,7 @@
         </article>
 
         <!-- Atos (Serasa) -->
-        <article class="exp-card">
+        <article class="exp-card is-early">
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">System Architect</h3>
@@ -1838,7 +1950,7 @@
         </article>
 
         <!-- LINT -->
-        <article class="exp-card">
+        <article class="exp-card is-early">
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">Tech Lead</h3>
@@ -1881,7 +1993,7 @@
         </article>
 
         <!-- Amadeus -->
-        <article class="exp-card">
+        <article class="exp-card is-early">
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">Systems Analyst</h3>
@@ -1937,7 +2049,7 @@
         </article>
 
         <!-- BSI -->
-        <article class="exp-card">
+        <article class="exp-card is-early">
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">Team Leader &amp; Quality Assurance</h3>
@@ -2025,6 +2137,23 @@
             </div>
         </div>
         <div class="tech-category">
+            <h3>Applied AI</h3>
+            <p class="tech-desc">LLM systems in production</p>
+            <div class="chip-row">
+                <span class="chip">Spring AI</span>
+                <span class="chip">JetBrains Koog</span>
+                <span class="chip">OpenAI</span>
+                <span class="chip">Multi-agent systems</span>
+                <span class="chip">RAG</span>
+                <span class="chip">pgvector</span>
+                <span class="chip">MCP</span>
+                <span class="chip">Guardrails</span>
+                <span class="chip">DeepEval</span>
+                <span class="chip">LLM observability</span>
+                <span class="chip">Claude Code</span>
+            </div>
+        </div>
+        <div class="tech-category">
             <h3>Cloud &amp; delivery</h3>
             <p class="tech-desc">Where it runs and how it ships</p>
             <div class="chip-row">
@@ -2034,8 +2163,10 @@
                 <span class="chip">AWS EKS</span>
                 <span class="chip">AWS Lambda</span>
                 <span class="chip">AWS SQS/SNS</span>
+                <span class="chip">Tencent Cloud</span>
                 <span class="chip">GitLab CI</span>
-                <span class="chip">Linux</span>
+                <span class="chip">OpenTelemetry</span>
+                <span class="chip">Grafana</span>
             </div>
         </div>
         <div class="tech-category">
@@ -2044,7 +2175,8 @@
             <div class="chip-row">
                 <span class="chip">MongoDB</span>
                 <span class="chip">Redis</span>
-                <span class="chip">PostgreSQL</span>
+                <span class="chip">PostgreSQL / PostGIS</span>
+                <span class="chip">Redis Streams</span>
                 <span class="chip">Oracle Database</span>
                 <span class="chip">Oracle SOA Suite</span>
                 <span class="chip">OSB / BPEL</span>
@@ -2163,7 +2295,7 @@
 <section class="contact-section" id="contact">
     <div class="contact-content">
         <h2>Get in touch</h2>
-        <p>Open to conversations about architecture, distributed systems and senior engineering roles.</p>
+        <p>Open to Staff and Principal engineering roles in distributed systems, platform and applied AI.</p>
         <div class="contact-links">
             <a href="mailto:renato.java@gmail.com" class="contact-link">
                 <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
@@ -2186,7 +2318,7 @@
 </section>
 
 <footer class="footer">
-    <p>Renato Garcia &mdash; Software Architect, Londrina, Brazil</p>
+    <p>Renato Garcia &mdash; Software Architect &middot; Distributed Systems &amp; Applied AI, Londrina, Brazil</p>
     <p>Updated September 2026</p>
 </footer>
 
