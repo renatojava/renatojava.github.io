@@ -217,6 +217,8 @@
 
         .skip-link:focus { top: 12px; }
 
+        .nowrap { white-space: nowrap; }
+
         .sr-only {
             position: absolute;
             width: 1px; height: 1px;
@@ -1275,6 +1277,12 @@
                 padding: 1px 7px;
             }
 
+            /* Role tech as one text line, so ATS parsers keep it with its role */
+            .exp-techs { display: block; font-size: 8.5pt; color: #374151; }
+            .exp-techs::before { content: "Tech: "; font-weight: 600; }
+            .exp-techs .chip { display: inline; border: none; padding: 0; font-size: 8.5pt; }
+            .exp-techs .chip + .chip::before { content: " \00B7  "; }
+
             .tech-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
             .tech-category { border: none; padding: 0; break-inside: avoid; }
             .tech-category h3 { font-size: 10pt; }
@@ -1334,8 +1342,8 @@
     <div class="navbar-links" id="navLinks">
         <a href="#about" class="nav-link" data-section="about">About</a>
         <a href="#experience" class="nav-link" data-section="experience">Experience</a>
-        <a href="#stack" class="nav-link" data-section="stack">Stack</a>
-        <a href="#credentials" class="nav-link" data-section="credentials">Credentials</a>
+        <a href="#stack" class="nav-link" data-section="stack">Skills</a>
+        <a href="#credentials" class="nav-link" data-section="credentials">Certifications</a>
         <a href="#contact" class="nav-link" data-section="contact">Contact</a>
     </div>
     <div class="navbar-actions">
@@ -1358,7 +1366,7 @@
     <div>
         <h1>Renato Garcia</h1>
         <p class="print-role">Software Architect &middot; Distributed Systems &amp; Applied AI</p>
-        <p class="print-summary">20+ years building distributed systems. Architect of GuBee&rsquo;s event-driven integration platform (30+ marketplaces, ~170 production workloads) and founding engineer of INAI, a multi-agent LLM platform running in production. I set technical direction across teams and still ship the hard parts.</p>
+        <p class="print-summary">20+ years building distributed systems. Architect of GuBee&rsquo;s <span class="nowrap">event-driven</span> integration platform (30+ marketplaces, ~170 production workloads) and founding engineer of INAI, a multi-agent LLM platform running in production. I set technical direction across teams and still ship the hard parts. Targeting Staff and Principal Engineer roles.</p>
     </div>
     <ul class="print-contacts">
         <li>renato.java@gmail.com</li>
@@ -2118,7 +2126,7 @@
 
 <!-- Stack -->
 <section class="section" id="stack">
-    <h2 class="section-title">Stack</h2>
+    <h2 class="section-title">Skills</h2>
     <div class="tech-grid">
         <div class="tech-category">
             <h3>Core</h3>
@@ -2189,7 +2197,7 @@
 
 <!-- Credentials -->
 <section class="section" id="credentials">
-    <h2 class="section-title">Credentials</h2>
+    <h2 class="section-title">Certifications</h2>
 
     <div class="cert-featured">
         <div class="cert-card-big">
@@ -2312,6 +2320,14 @@
             <a href="https://github.com/renatojava" class="contact-link" target="_blank" rel="noopener noreferrer">
                 <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
                 GitHub
+            </a>
+            <a href="Renato-Garcia-CV-EN.docx" class="contact-link" download>
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"></use></svg>
+                CV (DOCX, EN)
+            </a>
+            <a href="Renato-Garcia-Curriculo-PT.docx" class="contact-link" download>
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"></use></svg>
+                Curr&iacute;culo (DOCX, PT)
             </a>
         </div>
     </div>
