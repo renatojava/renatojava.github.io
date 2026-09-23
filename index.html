@@ -1220,7 +1220,7 @@
             }
 
             .section {
-                padding: 11px 0 0;
+                padding: 8px 0 0;
                 max-width: none;
                 break-inside: auto;
             }
@@ -1254,6 +1254,10 @@
 
             .exp-card::before { display: none; }
             .exp-card:last-child { border-bottom: none; }
+            /* Long current roles may flow across pages; keep header and each bullet whole */
+            .exp-card.is-current { break-inside: auto; }
+            .exp-header { break-after: avoid; }
+            .exp-bullets li, .exp-techs { break-inside: avoid; }
             .exp-header { margin-bottom: 5px; }
             .exp-role { font-size: 10.5pt; }
             .exp-bullets { margin-bottom: 6px; max-width: none; }
@@ -1290,7 +1294,8 @@
             .cert-featured { grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 11px; }
             .cert-card-big { border: none; padding: 0; box-shadow: none; break-inside: avoid; }
             .cert-icon { display: none; }
-            .cert-list { grid-template-columns: 1fr 1fr; gap: 0 24px; }
+            .cert-list { grid-template-columns: 1fr 1fr 1fr; gap: 0 18px; }
+            .cert-issuer { display: none; }
             .cert-item { padding: 4px 0; break-inside: avoid; }
             .cert-name { font-size: 9pt; }
 
@@ -1366,7 +1371,7 @@
     <div>
         <h1>Renato Garcia</h1>
         <p class="print-role">Software Architect &middot; Distributed Systems &amp; Applied AI</p>
-        <p class="print-summary">20+ years building distributed systems. Architect of GuBee&rsquo;s <span class="nowrap">event-driven</span> integration platform (30+ marketplaces, ~170 production workloads) and founding engineer of INAI, a multi-agent LLM platform running in production. I set technical direction across teams and still ship the hard parts. Targeting Staff and Principal Engineer roles.</p>
+        <p class="print-summary">Software architect with 20 years of integration work, from ESB and SOA to Kafka and, more recently, AI agents. I designed GuBee&rsquo;s marketplace integration platform (30+ marketplaces, about 1,300 requests per second) and built INAI, an AI platform that handles around 4,000 real-estate leads a month. I lead the technical direction and still write a good share of the code. Looking for Staff or Principal Engineer roles.</p>
     </div>
     <ul class="print-contacts">
         <li>renato.java@gmail.com</li>
@@ -1385,7 +1390,7 @@
         <img src="avatar.jpg" alt="Portrait of Renato Garcia" class="hero-avatar" width="116" height="116">
         <h1>Renato Garcia</h1>
         <p class="hero-role">Software Architect &middot; Distributed Systems &amp; Applied AI</p>
-        <p class="hero-tagline">I design and run the distributed systems that keep e-commerce platforms and 30+ marketplaces in sync &mdash; and I built, from the first commit, a multi-agent AI platform that serves real-estate leads on WhatsApp in production.</p>
+        <p class="hero-tagline">I have spent 20 years getting systems to work together, first with ESB, then Kafka, and now AI agents. Today I run the architecture behind 30+ marketplace integrations and an AI platform that answers about 4,000 real-estate leads a month.</p>
         <p class="hero-place">
             <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
             Londrina, Brazil
@@ -1424,8 +1429,13 @@
             </div>
             <div class="hero-metric-divider" aria-hidden="true"></div>
             <div class="hero-metric">
-                <strong>~170</strong>
-                <span>Production workloads under my architecture</span>
+                <strong>1.3k</strong>
+                <span>Requests per second in production</span>
+            </div>
+            <div class="hero-metric-divider" aria-hidden="true"></div>
+            <div class="hero-metric">
+                <strong>4k</strong>
+                <span>Leads a month handled by AI agents</span>
             </div>
         </div>
     </div>
@@ -1437,20 +1447,20 @@
     <div class="about-grid">
         <div>
             <p class="about-lead">
-                Software architect with 20+ years in production systems, most of it spent on integration: making systems that were never designed to talk to each other exchange data reliably, at volume, without losing an order. At GuBee I have owned the architecture since day one &mdash; a hub connecting e-commerce platforms to more than 30 Brazilian marketplaces, now around 170 workloads &mdash; and I set the technical direction the engineering teams build on. Since 2025 I am also the founding engineer of INAI, a multi-agent LLM platform for real-estate companies, running in production.
+                Most of my career has been about integration: getting systems that were never meant to talk to each other to exchange data reliably and at volume. I started with ESB and SOA middleware, moved to Kafka and event-driven microservices, and in the last couple of years to AI agents. I joined GuBee when it started and designed its platform, which connects e-commerce stores to more than 30 Brazilian marketplaces and handles about 1,300 requests per second over some 170 services. I also built the engineering team there. In 2025 I started INAI at Integra.do, another company in the GuBee group. It is an AI platform for real-estate agencies, in production since January and answering around 4,000 leads a month.
             </p>
 
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p><b>Org-wide technical direction:</b> architecture standards, cross-team migrations (cloud, Java 25, GraalVM native, OpenTelemetry) and the roadmap that sequences them</p>
+                <p><b>Technical direction:</b> architecture standards, large migrations (cloud, Java 25, GraalVM native, OpenTelemetry) and the roadmap for them</p>
             </div>
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p><b>Applied AI in production:</b> multi-agent systems, RAG, guardrails and LLM cost observability with Spring AI &mdash; plus the AI engineering toolkit my teams use daily</p>
+                <p><b>AI in production:</b> multi-agent systems, RAG, guardrails and LLM cost tracking with Spring AI and Koog</p>
             </div>
             <div class="about-highlight">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
-                <p><b>Hands-on at depth:</b> Java, Kotlin, Quarkus, Spring Boot, Kafka, Kubernetes &mdash; across e-commerce, telecom, banking, credit and public sector</p>
+                <p><b>Hands-on:</b> Java, Kotlin, Quarkus, Spring Boot, Kafka and Kubernetes, in e-commerce, telecom, banking, credit and the public sector. Built and lead a team of up to 9 engineers</p>
             </div>
         </div>
 
@@ -1464,12 +1474,12 @@
                 <span>Marketplace channels</span>
             </div>
             <div class="stat-card">
-                <strong>~170</strong>
-                <span>Production workloads</span>
+                <strong>1.3k</strong>
+                <span>Requests per second</span>
             </div>
             <div class="stat-card">
-                <strong>2</strong>
-                <span>Platforms built from zero</span>
+                <strong>4k</strong>
+                <span>AI-handled leads a month</span>
             </div>
         </div>
     </div>
@@ -1485,18 +1495,19 @@
             <div class="exp-header">
                 <div>
                     <h3 class="exp-role">Founding Engineer &amp; AI Architect</h3>
-                    <p class="exp-company"><b>Integra.do</b> &mdash; INAI
-                        <span class="exp-meta">Multi-agent AI platform for real estate &middot; Remote</span>
+                    <p class="exp-company"><b>Integra.do</b> (INAI)
+                        <span class="exp-meta">GuBee group &middot; AI platform for real estate &middot; Remote</span>
                     </p>
                     <span class="exp-tag">Current &middot; concurrent with GuBee</span>
                 </div>
                 <p class="exp-period">Jul 2025 &ndash; Present</p>
             </div>
             <ul class="exp-bullets">
-                <li>Architected and built INAI from the first commit: a multi-agent LLM platform that qualifies and serves real-estate leads 24/7 on WhatsApp &mdash; live in production since January 2026 at Imobili&aacute;ria Inglaterra, the launch client</li>
-                <li>Designed the multi-agent core: 5 specialist agents (SDR, billing, support, maintenance, launches) behind a hybrid router (keyword + semantic + session affinity, LLM tie-break) with agent-to-agent handoff and per-tenant overrides</li>
-                <li>Built zero-loss WhatsApp ingestion on Redis Streams (consumer groups, pending-entry recovery, per-tenant debounce) and lead ingestion from ZAP, VivaReal, OLX and ImovelWeb with dedupe and replay protection</li>
-                <li>Wrote ~70% of 2,400+ commits and every architecture and roadmap document; set the hexagonal, testing and observability standards the engineering team now builds on</li>
+                <li>Designed and built INAI from scratch. Its agents reply to real-estate leads on WhatsApp at any hour, qualify them and pass the good ones to brokers. Imobili&aacute;ria Inglaterra has used it since January 2026, with about 4,000 leads a month</li>
+                <li>Split the work among five agents (sales, billing, support, maintenance and new launches) with a router between them, which kept each agent small enough to test properly</li>
+                <li>Built the WhatsApp and portal intake (ZAP, VivaReal, OLX, ImovelWeb) so leads are not lost or duplicated when something fails</li>
+                <li>Picked a model size per task and put cost and latency per client on dashboards, which kept the LLM bill under control</li>
+                <li>Wrote about 70% of the 2,400+ commits plus the architecture and roadmap docs; the rest of the team works on top of those standards</li>
             </ul>
             <div class="exp-techs chip-row">
                 <span class="chip">Kotlin</span>
@@ -1514,12 +1525,14 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">INAI is Integra.do&rsquo;s AI platform for real-estate companies. Its agent persona, Bruna, works as a digital SDR on WhatsApp: it qualifies leads coming from property portals and chat, searches and recommends listings, and hands qualified leads to brokers. Imobili&aacute;ria Inglaterra was the launch client and has run on it in production since January 2026. I founded the codebase, CI and Kubernetes setup, wrote the AI core, and drive the roadmap that turns it into a multi-tenant SaaS.</p>
+                        <p class="detail-context">INAI is Integra.do&rsquo;s AI platform for real-estate companies. Its agent persona, Bruna, works as a digital SDR on WhatsApp: it qualifies leads coming from property portals and chat, searches and recommends listings, and hands qualified leads to brokers. Integra.do is part of the GuBee group. Imobili&aacute;ria Inglaterra was the first client and has run on it since January 2026, with about 4,000 leads a month. I founded the codebase, CI and Kubernetes setup, wrote the AI core, and drive the roadmap that turns it into a multi-tenant SaaS.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
                         <ul class="detail-list">
                             <li>Own the system architecture: hexagonal Kotlin services, multi-tenant data model, agent runtime and integration adapters</li>
+                            <li>Design the agent core: hybrid router (keyword + semantic + session affinity, LLM tie-break), agent-to-agent handoff and per-tenant overrides</li>
+                            <li>Build lossless ingestion: WhatsApp on Redis Streams (consumer groups, pending-entry recovery, per-tenant debounce) and ZAP, VivaReal, OLX and ImovelWeb leads with dedupe and replay protection</li>
                             <li>Design retrieval: hybrid search (pgvector + SQL + full text fused with RRF) with a local ONNX cross-encoder reranker, and geo ranking on PostGIS and OpenStreetMap POIs</li>
                             <li>Build the agent runtime: dynamic tools (HTTP, sandboxed GraalJS scripts, MCP), SpEL rules, Handlebars prompt templates, three-layer memory, semantic LLM cache and two-tier guardrails</li>
                             <li>Control LLM cost and latency by tiering four models by task (chat, classification, insights, transcription) and tracking spend per tenant</li>
@@ -1550,9 +1563,9 @@
                     <div class="detail-section">
                         <p class="rule-label">Impact</p>
                         <ul class="detail-list">
-                            <li>Took the product from an empty repository to its first client in production in about six months</li>
-                            <li>Led a hardening milestone: tenant isolation on 43 controllers, BCrypt API keys migrated with a dual-read window, ~200 blocking calls removed, oversized modules split</li>
-                            <li>~3,200 automated tests guard the agent flows, routing and ingestion paths</li>
+                            <li>Went from an empty repository to the first client in production in about six months</li>
+                            <li>Led a hardening milestone: tenant isolation on 43 controllers, BCrypt API keys migrated with a dual-read window, about 200 blocking calls removed, oversized modules split</li>
+                            <li>About 3,200 automated tests cover the agent flows, routing and intake</li>
                             <li>11 Grafana dashboards make LLM cost, latency, prompt-cache hit ratio and the re-engagement funnel visible per tenant</li>
                         </ul>
                     </div>
@@ -1573,12 +1586,12 @@
                 <p class="exp-period">Jul 2019 &ndash; Present</p>
             </div>
             <ul class="exp-bullets">
-                <li>Own the architecture of an integration hub connecting e-commerce platforms to 30+ marketplaces &mdash; about 170 production workloads on an event-driven Apache Kafka backbone</li>
-                <li>Planned and lead the platform&rsquo;s cloud migration (Huawei Cloud to Tencent Cloud): ~170 workloads, 36+ MongoDB databases, 25+ Kafka consumer groups, cut over behind feature flags with rollback at every step</li>
-                <li>Drive fleet-wide modernisation: Java 25, Quarkus native (over 60% less memory per service) and OpenTelemetry tracing, metrics and logs on Tempo, Loki and Mimir</li>
-                <li>Lead GuBee&rsquo;s AI products on JetBrains Koog: conversational commerce on WhatsApp (discovery to PIX checkout on the shared order engine) and AI catalog enrichment (categorisation, attribute extraction, titles, human-in-the-loop)</li>
-                <li>Built the company&rsquo;s AI engineering toolkit &mdash; 15 Claude Code plugins encoding our migrations, scaffolding, troubleshooting and architecture checks &mdash; so every team applies the same standards</li>
-                <li>Grew and lead the engineering team; set the standards for Hexagonal Architecture, DDD and automated testing</li>
+                <li>Designed and still own the architecture of the integration hub between e-commerce platforms and 30+ marketplaces. It runs on Kafka and handles about 1,300 requests per second across roughly 170 services</li>
+                <li>Leading the move from Huawei Cloud to Tencent Cloud to lower infrastructure cost: about 170 services, 36 MongoDB databases and 25 Kafka consumer groups, switched over one by one with feature flags and a rollback plan for each</li>
+                <li>Moved services to Quarkus native, which cut memory use per service by more than 60%, and added OpenTelemetry tracing and logs across the platform</li>
+                <li>Compared four agent frameworks and chose JetBrains Koog for our AI products: a WhatsApp sales assistant that goes all the way to PIX payment, and automatic catalog enrichment</li>
+                <li>Wrote 15 Claude Code plugins with our migration, scaffolding and troubleshooting steps, so other engineers can do that work without waiting for me</li>
+                <li>Hired and lead the engineering team (up to 9 people) and made hexagonal architecture, DDD and TDD our default</li>
             </ul>
             <div class="exp-techs chip-row">
                 <span class="chip">Java 25</span>
@@ -1596,7 +1609,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">GuBee is a SaaS integration hub that connects e-commerce platforms (VTEX, Shopify, WooCommerce, Magento) to the major Brazilian marketplaces (Mercado Livre, Amazon, Magalu, Shopee and 30+ others). I have been the architect since the company's inception: I designed the distributed system from scratch and have been evolving it ever since, alongside a growing engineering team.</p>
+                        <p class="detail-context">GuBee is a SaaS integration hub that connects e-commerce platforms (VTEX, Shopify, WooCommerce, Magento) to the major Brazilian marketplaces (Mercado Livre, Amazon, Magalu, Shopee and 30+ others). I joined when the company started, designed the system from scratch and have kept working on it since, together with the team I hired.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -1606,9 +1619,9 @@
                             <li>Lead the migration from Spring Boot to Quarkus native, reducing memory footprint and cold-start times</li>
                             <li>Architect event-driven pipelines on Apache Kafka for real-time marketplace synchronisation</li>
                             <li>Mentor developers, own the technical backlog and drive product decisions with the business</li>
-                            <li>Run the infrastructure: Kubernetes, Kafka, Redis and MongoDB clusters &mdash; first on AWS, now on Tencent Cloud</li>
+                            <li>Run the infrastructure: Kubernetes, Kafka, Redis and MongoDB clusters, first on AWS and now on Tencent Cloud</li>
                             <li>Write the migration playbooks (strategy, service checklists, secrets, storage, cutover order) that let several engineers migrate services in parallel</li>
-                            <li>Choose the agent framework from head-to-head POCs of Koog, Embabel, LangChain4j and Spring AI; Koog went to production</li>
+                            <li>Ran the framework POCs (Koog, Embabel, LangChain4j, Spring AI). Koog went to production after its 1.0 release fixed the Spring Boot 4 incompatibility</li>
                             <li>Architect the AI checkout as a thin BFF: commerce rules stay in the core engine (enforced by ArchUnit), while the BFF owns conversation, guardrails, LGPD consent and the WhatsApp 24-hour window; quality is gated by DeepEval suites for faithfulness, refusal and prompt injection</li>
                             <li>Design catalog enrichment with confidence scoring and human review, semantic search on OpenSearch kNN, and Kafka-driven processing</li>
                             <li>Codify recurring engineering work as AI agent skills: new marketplace scaffolding, Java and framework upgrades, OTel setup, CI setup, production troubleshooting</li>
@@ -1688,7 +1701,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">Serasa Experian is Brazil's largest credit bureau. I joined the Biometrics Product team as Tech Lead, on a five-month contract running alongside my role at GuBee, leading 6 engineers and 1 QA next to other product teams. The platform verifies identity through facial biometrics and liveness checks &mdash; for account opening and fraud prevention at clients such as Vivo, Claro and Ita&uacute;.</p>
+                        <p class="detail-context">Serasa Experian is Brazil's largest credit bureau. I joined the Biometrics Product team as Tech Lead, on a five-month contract running alongside my role at GuBee, leading 6 engineers and 1 QA next to other product teams. The platform verifies identity through facial biometrics and liveness checks, for account opening and fraud prevention at clients such as Vivo, Claro and Ita&uacute;.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -1696,7 +1709,7 @@
                             <li>Lead the team building the biometrics verification platform used by financial institutions and fintechs</li>
                             <li>Define system architecture and hold the quality bar across the microservices</li>
                             <li>Run technical alignment and requirements refinement sessions with product and business stakeholders</li>
-                            <li>Translate complex business requirements into viable, scalable technical solutions</li>
+                            <li>Turn business requirements into technical work the team could deliver</li>
                             <li>Design asynchronous messaging flows on AWS SQS/SNS for biometric data ingestion and processing</li>
                         </ul>
                     </div>
@@ -1716,8 +1729,8 @@
                     <div class="detail-section">
                         <p class="rule-label">Impact</p>
                         <ul class="detail-list">
-                            <li>Delivered on one of Brazil&rsquo;s most critical identity verification platforms, used by major telecom and banking clients (Vivo, Claro, Ita&uacute;)</li>
-                            <li>Bridged technical and business teams, turning stakeholder needs into well-defined engineering work</li>
+                            <li>Worked on an identity verification platform used by large telecom and banking clients (Vivo, Claro, Ita&uacute;)</li>
+                            <li>Kept product, business and the other engineering teams aligned on what we were building and when</li>
                         </ul>
                     </div>
                 </div>
@@ -1756,7 +1769,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">Atos is a global IT services company. Across nearly five years I worked as a system architect embedded in major enterprise clients &mdash; NET/Claro in telecom, Multiplus Fidelidade in loyalty, Carrefour in retail. The role combined architecture definition, team leadership, technical proposals and hands-on integration work on Oracle's enterprise middleware stack.</p>
+                        <p class="detail-context">Atos is a global IT services company. Across nearly five years I worked as a system architect embedded in major enterprise clients: NET/Claro in telecom, Multiplus Fidelidade in loyalty, Carrefour in retail. The role combined architecture definition, team leadership, technical proposals and hands-on integration work on Oracle's enterprise middleware stack.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -1785,9 +1798,9 @@
                     <div class="detail-section">
                         <p class="rule-label">Impact</p>
                         <ul class="detail-list">
-                            <li>Served as the reference architect for three of Brazil's largest enterprise clients simultaneously</li>
-                            <li>Carrefour HeavyGoods raised online sales conversion through a tool-driven, event-based architecture</li>
-                            <li>Built the Enterprise Integration Patterns depth that later shaped the event-driven design at GuBee</li>
+                            <li>Worked as architect for three large clients (NET/Claro, Multiplus, Carrefour), often at the same time</li>
+                            <li>Defined the HeavyGoods product for Carrefour on event-based microservices</li>
+                            <li>This is where I learned the integration patterns I later used to design GuBee</li>
                         </ul>
                     </div>
                 </div>
@@ -1826,7 +1839,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">Infracommerce is one of Brazil's leading full-service e-commerce operators. I joined as project leader and software architect for ACEC &mdash; a white-label e-commerce platform powering major retail brands, built on a service-oriented architecture with clearly separated layers for administration, sales and ERP/legacy integration.</p>
+                        <p class="detail-context">Infracommerce is one of Brazil's leading full-service e-commerce operators. I joined as project leader and software architect for ACEC, a white-label e-commerce platform powering major retail brands, built on a service-oriented architecture with clearly separated layers for administration, sales and ERP/legacy integration.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -1856,10 +1869,9 @@
                     <div class="detail-section">
                         <p class="rule-label">Impact</p>
                         <ul class="detail-list">
-                            <li>Platform served some of Brazil's largest retail brands under high-traffic e-commerce operations</li>
-                            <li>The Drools engine let non-technical teams manage dynamic pricing without code changes</li>
-                            <li>Solr-powered search measurably improved product discovery and conversion</li>
-                        </ul>
+                            <li>The platform ran online stores for large retail brands</li>
+                            <li>With Drools, the business team could change pricing rules without a deploy</li>
+                                                    </ul>
                     </div>
                 </div>
             </div>
@@ -1944,7 +1956,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">A short engagement at Atos embedded within Serasa (now Serasa Experian), Brazil's largest credit bureau. My first exposure to the financial data and credit scoring domain, twelve years before returning to Serasa as a Tech Lead in 2025.</p>
+                        <p class="detail-context">A short engagement at Atos embedded within Serasa (now Serasa Experian), Brazil's largest credit bureau. My first contact with credit data, twelve years before I went back to Serasa as Tech Lead in 2025.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -1970,7 +1982,7 @@
                 <p class="exp-period">Jun 2009 &ndash; Nov 2010</p>
             </div>
             <ul class="exp-bullets">
-                <li>Led development of a city administration system for CPQD, end to end</li>
+                <li>Led development of a city administration system for CPQD, from requirements to delivery</li>
                 <li>Owned customer requirements, architecture definition and team coordination through every project phase</li>
             </ul>
             <div class="exp-techs chip-row">
@@ -1986,7 +1998,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">LINT was a Londrina software house where I served as Tech Lead on government projects. The main engagement was a comprehensive city administration system for CPQD, managed across the full project lifecycle from requirements through delivery.</p>
+                        <p class="detail-context">LINT was a Londrina software house where I served as Tech Lead on government projects. The main project was a city administration system for CPQD, which I followed from requirements to delivery.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -2087,7 +2099,7 @@
                 <div class="exp-details-inner">
                     <div class="detail-section">
                         <p class="rule-label">Context</p>
-                        <p class="detail-context">BSI Tecnologia was a S&atilde;o Paulo software company specialised in financial sector applications. This is where my career began &mdash; from junior developer to team leadership and quality assurance over five years working with some of Brazil's largest banks.</p>
+                        <p class="detail-context">BSI Tecnologia was a S&atilde;o Paulo software company specialised in financial sector applications. This is where my career began. I went from junior developer to team leadership and quality assurance over five years working with some of Brazil's largest banks.</p>
                     </div>
                     <div class="detail-section">
                         <p class="rule-label">Responsibilities</p>
@@ -2114,8 +2126,8 @@
                         <p class="rule-label">Impact</p>
                         <ul class="detail-list">
                             <li>Progressed from junior developer to team leader and QA within the same company</li>
-                            <li>Built the financial systems and enterprise Java foundation the rest of my career rests on</li>
-                            <li>Gained rare experience integrating modern Java with mainframe Cobol &mdash; a scarce skill in banking</li>
+                            <li>Learned enterprise Java and banking systems here</li>
+                            <li>Integrated Java applications with mainframe COBOL, which not many developers did at the time</li>
                         </ul>
                     </div>
                 </div>
